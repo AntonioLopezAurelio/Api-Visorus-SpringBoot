@@ -1,5 +1,7 @@
 package com.apivisorus.service;
 
+import java.util.List;
+
 import com.apivisorus.model.entity.Producto;
 
 public interface IProducto {
@@ -8,4 +10,6 @@ public interface IProducto {
     Producto findById(Integer id);
 
     void delete(Producto producto);
+
+    List<Producto> findProductos();
 }

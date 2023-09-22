@@ -1,5 +1,8 @@
 package com.apivisorus.service;
 
+
+import java.util.List;
+
 import com.apivisorus.model.entity.Categoria;
 
 public interface ICategoria {
@@ -9,5 +12,7 @@ public interface ICategoria {
     Categoria findById(Integer id);
 
     void delete(Categoria categoria);
+
+    List<Categoria> findCategorias();
     
 }

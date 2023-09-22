@@ -1,5 +1,10 @@
 package com.apivisorus.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +36,21 @@ public class ProductoImple implements IProducto{
     @Override
     public Producto save(Producto producto) {
         return productoDao.save(producto);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Producto> findProductos() {
+        
+        Iterable<Producto> iterable = productoDao.findAll();
+
+        List<Producto> productos = StreamSupport.stream(iterable.spliterator(), false).map(producto ->{
+            Producto prod = new Producto();
+            BeanUtils.copyProperties(producto, prod);
+            return prod;
+        }).collect(Collectors.toList());
+
+        return productos; 
     }
     
 }

@@ -1,5 +1,10 @@
 package com.apivisorus.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +36,21 @@ public class CategoriaImple implements ICategoria {
     @Override
     public Categoria save(Categoria categoria) {
         return categoriaDao.save(categoria);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Categoria> findCategorias() {
+        
+        Iterable<Categoria> iterable = categoriaDao.findAll();
+
+        List<Categoria> categorias = StreamSupport.stream(iterable.spliterator(), false).map(categoria ->{
+            Categoria catg = new Categoria();
+            BeanUtils.copyProperties(categoria, catg);
+            return catg;
+        }).collect(Collectors.toList());
+
+        return categorias; 
     }
     
 }
