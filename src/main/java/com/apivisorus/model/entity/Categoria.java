@@ -3,6 +3,9 @@ package com.apivisorus.model.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.type.descriptor.java.BooleanJavaType;
+import org.hibernate.type.descriptor.jdbc.TinyIntJdbcType;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

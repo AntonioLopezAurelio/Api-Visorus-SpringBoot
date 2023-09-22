@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apivisorus.model.dao.CodigoBarrasDao;
-import com.apivisorus.model.entity.Categoria;
 import com.apivisorus.model.entity.CodigoBarras;
 import com.apivisorus.service.ICodigoBarras;
 
