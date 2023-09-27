@@ -14,5 +14,7 @@ public interface ICategoria {
     void delete(Categoria categoria);
 
     List<Categoria> findCategorias();
+
+    List<Categoria> findCategoriasCodigo();
     
 }

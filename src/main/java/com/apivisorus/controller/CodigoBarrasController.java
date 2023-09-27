@@ -24,32 +24,32 @@ public class CodigoBarrasController {
     @Autowired
     private ICodigoBarras codigoBarrasService;
 
-    @PostMapping("codigobarras")
+    @PostMapping("codigobarra")
     @ResponseStatus(HttpStatus.CREATED)
     public CodigoBarras createCodigoBarras(@RequestBody CodigoBarras codigoBarras){
         return codigoBarrasService.save(codigoBarras);
     }
 
-    @PutMapping("codigobarras")
+    @PutMapping("codigobarra")
     @ResponseStatus(HttpStatus.CREATED)
     public CodigoBarras updateCodigoBarras(@RequestBody CodigoBarras codigoBarras){
         return codigoBarrasService.save(codigoBarras);
     }
 
-    @DeleteMapping("codigobarras/{id}")
+    @DeleteMapping("codigobarra/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCodigoBarras(@PathVariable Integer id){
         CodigoBarras codigoBarrasDelete = codigoBarrasService.findById(id);
         codigoBarrasService.delete(codigoBarrasDelete);
     }
 
-    @GetMapping("codigobarras/{id}")
+    @GetMapping("codigobarra/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CodigoBarras showCodigoBarrasById(@PathVariable Integer id){
         return codigoBarrasService.findById(id);
     }
 
-    @GetMapping("codigosbarras")
+    @GetMapping("codigobarras")
     @ResponseStatus(HttpStatus.OK)
     public List<CodigoBarras> showCodigosBarras(){
         return codigoBarrasService.findCodigosBarras();

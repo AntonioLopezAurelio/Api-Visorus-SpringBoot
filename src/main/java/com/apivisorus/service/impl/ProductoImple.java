@@ -1,6 +1,7 @@
 package com.apivisorus.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apivisorus.model.dao.CategoriaDao;
 import com.apivisorus.model.dao.ProductoDao;
+import com.apivisorus.model.entity.Categoria;
 import com.apivisorus.model.entity.Producto;
 import com.apivisorus.service.IProducto;
 
@@ -18,6 +21,9 @@ public class ProductoImple implements IProducto{
 
     @Autowired
     private ProductoDao productoDao;
+
+    @Autowired
+    private CategoriaDao categoriaDao;
 
     @Transactional
     @Override
@@ -29,12 +35,18 @@ public class ProductoImple implements IProducto{
     @Transactional(readOnly = true)
     @Override
     public Producto findById(Integer id) {
+
         return productoDao.findById(id).orElse(null);
     }
 
     @Transactional
     @Override
     public Producto save(Producto producto) {
+        Optional<Categoria> categoriaOptional = categoriaDao.findById(producto.getCategoria().getIdCategoria());
+
+        if(categoriaOptional.isPresent()){
+            producto.setCategoria(categoriaOptional.get());
+        }
         return productoDao.save(producto);
     }
 

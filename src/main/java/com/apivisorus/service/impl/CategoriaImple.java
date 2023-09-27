@@ -52,5 +52,20 @@ public class CategoriaImple implements ICategoria {
 
         return categorias; 
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Categoria> findCategoriasCodigo() {
+        
+        Iterable<Categoria> iterable = categoriaDao.findAll();
+
+        List<Categoria> categorias = StreamSupport.stream(iterable.spliterator(), false).map(categoria ->{
+            Categoria catg = new Categoria();
+            BeanUtils.copyProperties(categoria, catg);
+            return catg;
+        }).collect(Collectors.toList());
+
+        return categorias; 
+    }
     
 }
