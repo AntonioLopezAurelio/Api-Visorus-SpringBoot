@@ -33,10 +33,10 @@ public class CodigoBarras  implements Serializable{
     @ GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCodigoBarras;
 
-    @Column(name = "codigo")
+    @Column(name = "codigo", nullable = false, length=20)
     private String codigo;
 
-    @Column(name = "activo")
+    @Column(name = "activo",  nullable = false)
     private Boolean activo;
 
     @ManyToOne(fetch = FetchType.LAZY)

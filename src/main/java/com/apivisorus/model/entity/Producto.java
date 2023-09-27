@@ -36,13 +36,13 @@ public class Producto implements Serializable{
     @ GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto;
 
-    @Column(name = "codigo")
+    @Column(name = "codigo", nullable = false, length=20)
     private String codigo;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion",  nullable = false, length=60)
     private String descripcion;
 
-    @Column(name = "activo")
+    @Column(name = "activo", nullable = false)
     private Boolean activo;
 
     @ManyToOne(fetch = FetchType.LAZY)
