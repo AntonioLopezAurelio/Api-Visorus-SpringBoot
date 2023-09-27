@@ -64,5 +64,20 @@ public class ProductoImple implements IProducto{
 
         return productos; 
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Producto> findProductoPalabraClave(String busqueda) {
+        
+        Iterable<Producto> iterable = productoDao.findAll(busqueda);
+
+        List<Producto> productos = StreamSupport.stream(iterable.spliterator(), false).map(producto ->{
+            Producto prod = new Producto();
+            BeanUtils.copyProperties(producto, prod);
+            return prod;
+        }).collect(Collectors.toList());
+
+        return productos; 
+    }
     
 }

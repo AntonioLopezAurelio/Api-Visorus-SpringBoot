@@ -12,4 +12,6 @@ public interface IProducto {
     void delete(Producto producto);
 
     List<Producto> findProductos();
+
+    List<Producto> findProductoPalabraClave(String busqueda);
 }

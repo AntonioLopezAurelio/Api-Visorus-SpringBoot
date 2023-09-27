@@ -54,5 +54,11 @@ public class CategoriaController {
     public List<Categoria> showCategorias(){
         return categoriaService.findCategorias();
     }
+
+    @GetMapping("categoriasBusqueda/{palabra}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Categoria> showCategoriasBusqueda(@PathVariable String palabra){
+        return categoriaService.findCategoriaPalabraClave(palabra);
+    }
     
 }

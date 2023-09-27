@@ -54,5 +54,11 @@ public class ProductoController {
     public List<Producto> showProductos(){
         return productoService.findProductos();
     }
+
+    @GetMapping("productosBusqueda/{palabra}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Producto> showProductosBusqueda(@PathVariable String palabra){
+        return productoService.findProductoPalabraClave(palabra);
+    }
             
 }

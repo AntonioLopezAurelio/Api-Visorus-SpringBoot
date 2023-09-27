@@ -55,9 +55,9 @@ public class CategoriaImple implements ICategoria {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Categoria> findCategoriasCodigo() {
+    public List<Categoria> findCategoriaPalabraClave(String busqueda) {
         
-        Iterable<Categoria> iterable = categoriaDao.findAll();
+        Iterable<Categoria> iterable = categoriaDao.findAll(busqueda);
 
         List<Categoria> categorias = StreamSupport.stream(iterable.spliterator(), false).map(categoria ->{
             Categoria catg = new Categoria();
